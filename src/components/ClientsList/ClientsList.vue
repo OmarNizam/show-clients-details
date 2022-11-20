@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
-    <p>{{ clients }}</p>
+    <input type="search" v-model="search" />
+    <div v-for="entry in filteredData" :key="entry.name">
+      <pre v-text="entry" />
+    </div>
   </div>
 </template>
 
@@ -12,10 +15,21 @@ export default {
   name: "ClientsList",
   props: {},
   data() {
-    return {};
+    return {
+      search: "",
+    };
   },
   computed: {
     ...mapState(useClientStore, ["clients"]),
+    filteredData() {
+      return this.clients.filter((entry) =>
+        this.clients.length
+          ? Object.keys(this.clients[0]).some((key) =>
+              ("" + entry[key]).toLowerCase().includes(this.search)
+            )
+          : true
+      );
+    },
   },
   async created() {},
   async mounted() {
