@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import ClientsList from "@/components/ClientsList/ClientsList.vue";
+import ClientsList from "./ClientsList.vue";
 
 describe("ClientsList.vue", () => {
   test("renders props.msg when passed", () => {

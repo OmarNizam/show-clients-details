@@ -10,23 +10,53 @@
     >
       <h2>My Popup</h2>
     </PopUp>
-    <div
-      v-for="client in filteredClients"
-      class="clients-list"
-      :key="client.name"
-    >
+    <!-- Desktop -->
+    <div class="board" v-if="!mobile">
+      <table width="100%">
+        <thead>
+          <tr>
+            <td>Avatar</td>
+            <td>Name</td>
+            <td>Title</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="client in filteredClients"
+            @click="
+              getChosenClient(client);
+              openPopUp();
+            "
+            class="clients-list"
+            :key="client.name"
+          >
+            <img :src="client.avatar" class="avatar-list" alt="avatar" />
+            <th scope="row">{{ containsHTML(client.name) }}</th>
+            <td>{{ client.title }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- tablet -->
+    <div v-if="mobile">
       <div
-        class="client-card"
-        @click="
-          getChosenClient(client);
-          openPopUp();
-        "
+        v-for="client in filteredClients"
+        class="clients-list"
+        :key="client.name"
       >
-        <img :src="client.avatar" class="avatar-list" alt="" />
+        <div
+          class="client-card"
+          @click="
+            getChosenClient(client);
+            openPopUp();
+          "
+        >
+          <img :src="client.avatar" class="avatar-list" alt="" />
 
-        <div>{{ containsHTML(client.name) }}</div>
-        <div>
-          {{ client.title }}
+          <div>{{ containsHTML(client.name) }}</div>
+          <div>
+            {{ client.title }}
+          </div>
         </div>
       </div>
     </div>
@@ -48,6 +78,7 @@ export default {
       search: "",
       popUpTrigger: false,
       clientData: {},
+      mobile: false,
     };
   },
   computed: {
