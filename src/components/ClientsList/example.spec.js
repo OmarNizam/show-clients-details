@@ -1,10 +1,10 @@
 import { shallowMount } from "@vue/test-utils";
-import UsersList from "@/components/UserList/UsersList.vue";
+import ClientsList from "@/components/ClientsList/ClientsList.vue";
 
-describe("UsersList.vue", () => {
+describe("ClientsList.vue", () => {
   test("renders props.msg when passed", () => {
     const msg = "new message";
-    const wrapper = shallowMount(UsersList, {
+    const wrapper = shallowMount(ClientsList, {
       props: { msg },
     });
     expect(wrapper.text()).toMatch(msg);

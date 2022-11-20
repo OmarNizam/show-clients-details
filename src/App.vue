@@ -1,13 +1,13 @@
 <template>
-  <UsersList msg="Welcome to Your Vue.js App" />
+  <ClientsList msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
-import UsersList from "./components/UserList/UsersList.vue";
+import ClientsList from "./components/ClientsList/ClientsList.vue";
 export default {
   name: "App",
   components: {
-    UsersList,
+    ClientsList,
   },
 };
 </script>

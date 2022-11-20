@@ -1,4 +1,4 @@
-# show-user-details
+# show-clients-details
 
 ## Project setup
 ```

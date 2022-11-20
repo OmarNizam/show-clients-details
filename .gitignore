@@ -110,3 +110,5 @@ web_modules/
 # Ignore all local history of files
 .history
 .ionide
+
+serviceAccount.json
