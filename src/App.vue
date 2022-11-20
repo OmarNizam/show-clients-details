@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ClientsList from "./components/ClientsList/ClientsList.vue";
+import ClientsList from "./views/ClientsList/ClientsList.vue";
 export default {
   name: "App",
   components: {

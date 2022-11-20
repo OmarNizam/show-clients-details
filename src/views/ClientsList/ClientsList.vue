@@ -1,29 +1,50 @@
 <template>
-  <div class="hello">
+  <main class="hello">
     <input type="search" v-model="search" />
+    <PopUp
+      :client-data="clientData"
+      @close-pop-up="closePopUp"
+      v-if="popUpTrigger"
+    >
+      <h2>My Popup</h2>
+    </PopUp>
     <div v-for="entry in filteredData" :key="entry.name">
-      <pre v-text="entry" />
+      <div
+        @click="
+          getChosenClient(entry);
+          openPopUp();
+        "
+      >
+        {{ entry.name }}
+        {{ entry.title }}
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
 import { mapState, mapActions } from "pinia";
 import { useClientStore } from "@/stores/ClientStore";
+import PopUp from "@/components/Popup/PopUp.vue";
 
 export default {
   name: "ClientsList",
-  props: {},
+  components: {
+    PopUp,
+  },
   data() {
     return {
       search: "",
+      popUpTrigger: false,
+      clientData: {},
     };
   },
   computed: {
-    ...mapState(useClientStore, ["clients"]),
+    ...mapState(useClientStore, ["clients", "clientsCount"]),
+
     filteredData() {
       return this.clients.filter((entry) =>
-        this.clients.length
+        this.clientsCount
           ? Object.keys(this.clients[0]).some((key) =>
               ("" + entry[key]).toLowerCase().includes(this.search)
             )
@@ -37,6 +58,16 @@ export default {
   },
   methods: {
     ...mapActions(useClientStore, ["getClientsList"]),
+
+    openPopUp() {
+      this.popUpTrigger = !this.popUpTrigger;
+    },
+    closePopUp(newPopUpTrigger) {
+      this.popUpTrigger = newPopUpTrigger;
+    },
+    getChosenClient(chosenClient) {
+      this.clientData = chosenClient;
+    },
   },
 };
 </script>
