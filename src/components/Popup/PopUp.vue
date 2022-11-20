@@ -4,7 +4,7 @@
       <div>
         <slot />
         <div>
-          <img :src="avatar" class="avatar" alt="" />
+          <img :src="clientData.avatar" class="avatar" alt="" />
         </div>
         <div>
           Name: {{ clientData.name }}
@@ -23,12 +23,6 @@
 export default {
   name: "PopUp",
   props: ["clientData"],
-  data() {
-    return {
-      avatar: this.clientData.avatar,
-    };
-  },
-  methods: {},
 };
 </script>
 

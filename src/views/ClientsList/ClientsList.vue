@@ -1,6 +1,8 @@
 <template>
   <main class="hello">
-    <input type="search" v-model="search" />
+    <div>
+      <input type="search" v-model="search" />
+    </div>
     <PopUp
       :client-data="clientData"
       @close-pop-up="closePopUp"
@@ -8,15 +10,24 @@
     >
       <h2>My Popup</h2>
     </PopUp>
-    <div v-for="entry in filteredData" :key="entry.name">
+    <div
+      v-for="client in filteredClients"
+      class="clients-list"
+      :key="client.name"
+    >
       <div
+        class="client-card"
         @click="
-          getChosenClient(entry);
+          getChosenClient(client);
           openPopUp();
         "
       >
-        {{ entry.name }}
-        {{ entry.title }}
+        <img :src="client.avatar" class="avatar-list" alt="" />
+
+        <div>{{ containsHTML(client.name) }}</div>
+        <div>
+          {{ client.title }}
+        </div>
       </div>
     </div>
   </main>
@@ -42,11 +53,11 @@ export default {
   computed: {
     ...mapState(useClientStore, ["clients", "clientsCount"]),
 
-    filteredData() {
-      return this.clients.filter((entry) =>
+    filteredClients() {
+      return this.clients.filter((client) =>
         this.clientsCount
           ? Object.keys(this.clients[0]).some((key) =>
-              ("" + entry[key]).toLowerCase().includes(this.search)
+              ("" + client[key]).toLowerCase()?.includes(this.search)
             )
           : true
       );
@@ -54,7 +65,7 @@ export default {
   },
   async created() {},
   async mounted() {
-    this.getClientsList();
+    await this.getClientsList();
   },
   methods: {
     ...mapActions(useClientStore, ["getClientsList"]),
@@ -62,11 +73,19 @@ export default {
     openPopUp() {
       this.popUpTrigger = !this.popUpTrigger;
     },
+
     closePopUp(newPopUpTrigger) {
       this.popUpTrigger = newPopUpTrigger;
     },
+
     getChosenClient(chosenClient) {
       this.clientData = chosenClient;
+    },
+
+    containsHTML: (str) => {
+      return !/<[a-z][\s\S]*>/i.test(str)
+        ? str
+        : `${str.replace(/<[a-z][\s\S]*>/i, "")}`;
     },
   },
 };
@@ -87,5 +106,17 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.avatar-list {
+  height: 50px;
+}
+
+.clients-list {
+  padding-top: 20px;
+}
+.client-card {
+  border: 3px;
+  border-block-color: black;
 }
 </style>
