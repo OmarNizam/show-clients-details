@@ -76,18 +76,21 @@ describe("Client Store:", () => {
       const store = useClientStore();
       const spy = jest
         .spyOn(store, "getClientsList")
-        .mockImplementation(() =>
-          Promise.resolve([clientsJson[0]], { status: 201 })
-        );
+        .mockImplementation(async () => {
+          try {
+            await Promise.resolve([clientsJson[0]], {
+              status: 201,
+              ok: true,
+            });
+          } catch (err) {
+            return err;
+          }
+        });
 
-      store.getClientsList(
-        store.$patch({
-          clients: [clientsJson[0]],
-        })
-      );
+      await store.getClientsList(store.$patch({ clients: [clientsJson[0]] }));
 
-      // ...but it's still wrapped with a spy, so you can inspect calls
-      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalled();
+      expect(spy.mockImplementation.length).toBe(1);
       expect(store.clients).toEqual([
         {
           avatar:
@@ -100,6 +103,29 @@ describe("Client Store:", () => {
       ]);
     });
 
-    test("", () => {});
+    test("Pinia store actions: getClientsList action reject in get clients data", async () => {
+      const store = useClientStore();
+      const spy = jest
+        .spyOn(store, "getClientsList")
+        .mockImplementation(async () => {
+          try {
+            await Promise.reject("Error Text: Not Found!", {
+              status: 404,
+              ok: false,
+            });
+          } catch (err) {
+            return err;
+          }
+        });
+
+      const errorStatus = await store.getClientsList();
+
+      expect(spy).toHaveBeenCalled();
+      expect(errorStatus).toBe("Error Text: Not Found!");
+    });
   });
 });
+
+/**
+ * actions unit test ends
+ */
