@@ -7,6 +7,8 @@ import ClientsList from "@/views/ClientsList/ClientsList.vue";
 import PopUp from "@/components/Popup/PopUp.vue";
 import { useClientStore } from "@/stores/ClientStore";
 
+import clientsJson from "../../data/clients.json";
+
 describe("ClientsList view:", () => {
   const wrapper = shallowMount(ClientsList, {
     components: {
@@ -34,5 +36,39 @@ describe("ClientsList view:", () => {
 
     expect(wrapper.exists).toBeTruthy();
     expect(store.clients).toEqual([]);
+  });
+
+  test("Should Load component and test mapState", () => {
+    const store = useClientStore();
+    store.$patch({
+      clients: [
+        {
+          avatar:
+            "https://avataaars.io/?avatarStyle=Circle&topType=NoHair&accessoriesType=Blank&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=Hoodie&clotheColor=Gray01&eyeType=Surprised&eyebrowType=UpDown&mouthType=Twinkle&skinColor=Brown",
+          name: "Brendon Taylor",
+          nationality: "New Zealand",
+          quote: "I am a super-visor!",
+          title: "Supervisor",
+        },
+      ],
+    });
+    expect(wrapper.vm.clientsCount).toBe(1);
+  });
+
+  test("Should computed filteredClients", () => {
+    const filteredClients = ClientsList.computed.filteredClients.call({
+      clients: [clientsJson[0]],
+    });
+
+    expect(filteredClients).toEqual([
+      {
+        avatar:
+          "https://avataaars.io/?avatarStyle=Circle&topType=NoHair&accessoriesType=Blank&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=Hoodie&clotheColor=Gray01&eyeType=Surprised&eyebrowType=UpDown&mouthType=Twinkle&skinColor=Brown",
+        name: "Brendon Taylor",
+        nationality: "New Zealand",
+        quote: "I am a super-visor!",
+        title: "Supervisor",
+      },
+    ]);
   });
 });
