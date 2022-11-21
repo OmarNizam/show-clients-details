@@ -37,4 +37,24 @@ describe("Client Store:", () => {
   /**
    * state unit test ends
    */
+
+  /**
+   * getters unit test start
+   */
+
+  describe("Client store getters:", () => {
+    test("Pinia store getters: clientsCount getter to return 0", () => {
+      const store = useClientStore();
+      expect(store.clientsCount).toEqual(0);
+    });
+
+    test("Pinia store getters: clientsCount getter to return 1", () => {
+      const store = useClientStore();
+      store.$patch({
+        clients: [clientsJson[0]],
+      });
+
+      expect(store.clientsCount).toEqual(1);
+    });
+  });
 });
