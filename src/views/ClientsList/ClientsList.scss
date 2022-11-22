@@ -19,7 +19,7 @@ td {
 
 .hello {
   /* The image used */
-  background-image: url("../../assets/images/Backgroud.jpeg");
+  background-image: url("../../assets/images/Background.jpeg");
 
   /* Full height */
   height: 100vh;
@@ -41,4 +41,46 @@ td {
 .client-card {
   border: 3px;
   border-block-color: black;
+}
+
+input {
+  color: rgba(0, 0, 0, 0.87);
+  outline-color: none;
+  background-color: #dcdcdc;
+  border: none;
+  height: 100%;
+  flex-grow: 1;
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.voice {
+  height: 20px;
+  margin: 0px 5px;
+}
+
+.search-icon {
+  height: 1.5rem;
+  color: rgb(154, 160, 166);
+  margin: 0px 5px;
+}
+
+.wrapper {
+  height: 30px;
+  padding: 2px;
+  border-radius: 50px;
+  border: 1px solid #dcdcdc;
+  outline-color: none;
+  cursor: text;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.wrapper:hover {
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
 }

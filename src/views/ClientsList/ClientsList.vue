@@ -1,17 +1,27 @@
 <template>
   <main class="hello">
     <section id="search-section" class="container">
-      <div class="row pb-5">
-        <div class="col-lg-8 offset-lg-2 text-center">
-          <div class="search">
-            <h2>Context Labs</h2>
-            <p>1205+ Clients has been added last month</p>
-            <ion-icon name="search-outline"></ion-icon>
+      <div class="d-flex justify-content-center py-5">
+        <div class="col-lg-6 col-md-7">
+          <h2>Context Labs</h2>
+          <p>1205+ Clients has been added last month</p>
+          <div class="wrapper">
+            <img
+              class="search-icon"
+              src="../../assets/images/search-outline.svg"
+            />
             <input
+              class="search"
               type="search"
-              placeholder="Search Clients"
+              placeholder="Search Clients ..."
               v-model="search"
             />
+            <a href="#">
+              <img
+                class="voice"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Google_mic.svg/716px-Google_mic.svg.png"
+                title="Search by Voice"
+            /></a>
           </div>
         </div>
       </div>
@@ -24,10 +34,7 @@
     </PopUp>
 
     <!-- Desktop -->
-    <section
-      id="clients-desktop"
-      class="container d-none d-md-block bg-light mt-3"
-    >
+    <div id="clients-desktop" class="container d-none d-md-block mt-3">
       <div class="d-flex w-100 justify-content-between px-4">
         <h4 scope="col" class="col-4 align-middle">Avatar</h4>
         <h4 scope="col" class="col-4 align-middle">Name</h4>
@@ -44,18 +51,23 @@
             class="list-group-item list-group-item-action d-flex w-100 justify-content-between"
             :key="client.name"
           >
-            <td class="col-4 align-middle align-text-bottom">
+            <td class="col-4 d-flex flex-column justify-content-center">
               <img :src="client.avatar" class="avatar-list ms-3" alt="avatar" />
             </td>
 
-            <td scope="row" class="col-4 align-middle align-text-bottom">
+            <td
+              scope="row"
+              class="col-4 d-flex flex-column justify-content-center"
+            >
               {{ containsHTML(client.name) }}
             </td>
-            <td class="col-4 align-middle">{{ client.title }}</td>
+            <td class="col-4 d-flex flex-column justify-content-center">
+              {{ client.title }}
+            </td>
           </tr>
         </tbody>
       </table>
-    </section>
+    </div>
     <!-- tablet -->
     <div class="d-md-none d-sm-block">
       <div
