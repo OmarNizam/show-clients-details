@@ -1,44 +1,53 @@
 <template>
   <main class="hello">
-    <div>
-      <input type="search" v-model="search" />
+    <div class="n1">
+      <div class="search"></div>
+      <input type="search" placeholder="Search" v-model="search" />
     </div>
     <PopUp
       :client-data="clientData"
       @close-pop-up="closePopUp"
       v-if="popUpTrigger"
     >
-      <h2>My Popup</h2>
     </PopUp>
+
     <!-- Desktop -->
-    <div class="board" v-if="!mobile">
+    <section
+      id="clients-desktop"
+      class="container d-none d-md-block bg-light mt-3"
+    >
       <table width="100%">
         <thead>
-          <tr>
-            <td>Avatar</td>
-            <td>Name</td>
-            <td>Title</td>
+          <tr class="d-flex w-100 justify-content-between px-4">
+            <td scope="col" class="col-4 align-middle">Avatar</td>
+            <td scope="col" class="col-4 align-middle">Name</td>
+            <td scope="col" class="col-4 align-middle">Title</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="list-group">
           <tr
             v-for="client in filteredClients"
             @click="
               getChosenClient(client);
               openPopUp();
             "
-            class="clients-list"
+            class="list-group-item list-group-item-action d-flex w-100 justify-content-between"
             :key="client.name"
           >
-            <img :src="client.avatar" class="avatar-list" alt="avatar" />
-            <th scope="row">{{ containsHTML(client.name) }}</th>
-            <td>{{ client.title }}</td>
+            <td class="col-4 align-middle align-text-bottom">
+              <img :src="client.avatar" class="avatar-list ms-3" alt="avatar" />
+            </td>
+
+            <th scope="row" class="col-4 align-middle align-text-bottom">
+              {{ containsHTML(client.name) }}
+            </th>
+            <td class="col-4 align-middle">{{ client.title }}</td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
     <!-- tablet -->
-    <div v-if="mobile">
+    <div class="d-md-none d-sm-block">
       <div
         v-for="client in filteredClients"
         class="clients-list"
@@ -52,7 +61,6 @@
           "
         >
           <img :src="client.avatar" class="avatar-list" alt="" />
-
           <div>{{ containsHTML(client.name) }}</div>
           <div>
             {{ client.title }}
@@ -78,7 +86,6 @@ export default {
       search: "",
       popUpTrigger: false,
       clientData: {},
-      mobile: false,
     };
   },
   computed: {
@@ -94,7 +101,6 @@ export default {
       );
     },
   },
-  async created() {},
   async mounted() {
     await this.getClientsList();
   },
