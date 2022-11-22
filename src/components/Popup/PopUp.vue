@@ -20,9 +20,7 @@
           <span class="fw-bolder me-1">Quote: </span>
           {{ checkClientValues("quote") }}
         </p>
-        <a href="#" class="btn btn-primary" @click="$emit('closePopUp', false)"
-          >Go back</a
-        >
+        <a href="#" class="btn btn-primary" @click="closePopUp">Go back</a>
       </div>
     </div>
   </div>
@@ -52,6 +50,9 @@ export default {
       return !/<[a-z][\s\S]*>/i.test(str)
         ? str
         : `${str.replace(/<[a-z][\s\S]*>/i, "")}`;
+    },
+    closePopUp() {
+      this.$emit("closePopUp", false);
     },
   },
 };
