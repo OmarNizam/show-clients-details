@@ -6,7 +6,7 @@
       </div>
       <div class="pb-4 pt-2 px-4">
         <h5 class="card-title fw-bolder">
-          {{ containsHTML(clientData.name) }}
+          {{ checkClientValues("name") }}
         </h5>
         <p class="card-text text-start pt-1">
           <span class="fw-bolder me-1">Job title: </span
@@ -35,15 +35,17 @@ export default {
   methods: {
     checkClientValues(newKey) {
       if (newKey === "name") {
-        return this.clientData.name ? this.clientData.name : "No Name!";
+        const newName = this.containsHTML(this.clientData.name);
+        return newName ? newName : "No Name!";
       } else if (newKey === "title") {
-        return this.clientData.title ? this.clientData.title : "No Title!";
+        const newTitle = this.containsHTML(this.clientData.title);
+        return newTitle ? newTitle : "No Title!";
       } else if (newKey === "nationality") {
-        return this.clientData.nationality
-          ? this.clientData.nationality
-          : "No Nationality!";
+        const newNationality = this.containsHTML(this.clientData.nationality);
+        return newNationality ? newNationality : "No Nationality!";
       } else if (newKey === "quote") {
-        return this.clientData.quote ? this.clientData.quote : "No Quote!";
+        const newQuote = this.containsHTML(this.clientData.quote);
+        return newQuote ? newQuote : "No Quote!";
       }
     },
     containsHTML: (str) => {
