@@ -1,9 +1,21 @@
 <template>
   <main class="hello">
-    <div class="n1">
-      <div class="search"></div>
-      <input type="search" placeholder="Search" v-model="search" />
-    </div>
+    <section id="search-section" class="container">
+      <div class="row pb-5">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="search">
+            <h2>Context Labs</h2>
+            <p>1205+ Clients has been added last month</p>
+            <ion-icon name="search-outline"></ion-icon>
+            <input
+              type="search"
+              placeholder="Search Clients"
+              v-model="search"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
     <PopUp
       :client-data="clientData"
       @close-pop-up="closePopUp"
@@ -16,14 +28,12 @@
       id="clients-desktop"
       class="container d-none d-md-block bg-light mt-3"
     >
+      <div class="d-flex w-100 justify-content-between px-4">
+        <h4 scope="col" class="col-4 align-middle">Avatar</h4>
+        <h4 scope="col" class="col-4 align-middle">Name</h4>
+        <h4 scope="col" class="col-4 align-middle">Title</h4>
+      </div>
       <table width="100%">
-        <thead>
-          <tr class="d-flex w-100 justify-content-between px-4">
-            <td scope="col" class="col-4 align-middle">Avatar</td>
-            <td scope="col" class="col-4 align-middle">Name</td>
-            <td scope="col" class="col-4 align-middle">Title</td>
-          </tr>
-        </thead>
         <tbody class="list-group">
           <tr
             v-for="client in filteredClients"
@@ -38,9 +48,9 @@
               <img :src="client.avatar" class="avatar-list ms-3" alt="avatar" />
             </td>
 
-            <th scope="row" class="col-4 align-middle align-text-bottom">
+            <td scope="row" class="col-4 align-middle align-text-bottom">
               {{ containsHTML(client.name) }}
-            </th>
+            </td>
             <td class="col-4 align-middle">{{ client.title }}</td>
           </tr>
         </tbody>

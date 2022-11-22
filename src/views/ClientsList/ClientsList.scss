@@ -13,6 +13,24 @@ a {
   color: #42b983;
 }
 
+td {
+  cursor: pointer;
+}
+
+.hello {
+  /* The image used */
+  background-image: url("../../assets/images/Backgroud.jpeg");
+
+  /* Full height */
+  height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
 .avatar-list {
   height: 50px;
 }
