@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-center py-5">
         <div class="col-lg-6 col-md-7">
           <h2>Context Labs</h2>
-          <p>1205+ Clients has been added last month</p>
+          <p>Clients has been added last month</p>
           <div class="wrapper">
             <img
               class="search-icon"
@@ -72,11 +72,11 @@
     <div class="d-md-none d-sm-block">
       <div
         v-for="client in filteredClients"
-        class="clients-list"
+        class="clients-list d-flex flex-column px-5"
         :key="client.name"
       >
         <div
-          class="client-card"
+          class="card client-card"
           @click="
             getChosenClient(client);
             openPopUp();
