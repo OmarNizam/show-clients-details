@@ -8,7 +8,7 @@
         <input
           class="search"
           type="search"
-          placeholder="Search Clients ..."
+          placeholder=" Search Clients ..."
           v-model="searchText"
           @input="handleChange"
         />

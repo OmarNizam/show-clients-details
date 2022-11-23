@@ -3,8 +3,6 @@ import { setActivePinia, createPinia } from "pinia";
 
 import { createTestingPinia } from "@pinia/testing";
 
-import { useClientStore } from "./stores/ClientStore";
-
 import App from "./App.vue";
 import ClientsList from "./views/ClientsList/ClientsList.vue";
 
