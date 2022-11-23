@@ -3,70 +3,77 @@
     <section id="search-section" class="container">
       <SearchBar @handle-change="handleChange" />
     </section>
-    <PopUp
-      :client-data="clientData"
-      @close-pop-up="closePopUp"
-      v-if="popUpTrigger"
-    >
-    </PopUp>
+    <section id="popup-section">
+      <PopUp
+        :client-data="clientData"
+        @close-pop-up="closePopUp"
+        v-if="popUpTrigger"
+      >
+      </PopUp>
+    </section>
+    <section id="clients-list-section">
+      <!-- Desktop -->
+      <div id="clients-desktop" class="container d-none d-md-block mt-3">
+        <div class="d-flex w-100 justify-content-between px-4">
+          <h4 scope="col" class="col-4 align-middle">Avatar</h4>
+          <h4 scope="col" class="col-4 align-middle">Name</h4>
+          <h4 scope="col" class="col-4 align-middle">Title</h4>
+        </div>
+        <table width="100%">
+          <tbody class="list-group">
+            <tr
+              v-for="client in filteredClients"
+              @click="
+                getChosenClient(client);
+                openPopUp();
+              "
+              class="list-group-item list-group-item-action d-flex w-100 justify-content-between"
+              :key="client.name"
+            >
+              <td class="col-4 d-flex flex-column justify-content-center">
+                <img
+                  :src="client.avatar"
+                  class="avatar-list ms-3"
+                  alt="avatar"
+                />
+              </td>
 
-    <!-- Desktop -->
-    <div id="clients-desktop" class="container d-none d-md-block mt-3">
-      <div class="d-flex w-100 justify-content-between px-4">
-        <h4 scope="col" class="col-4 align-middle">Avatar</h4>
-        <h4 scope="col" class="col-4 align-middle">Name</h4>
-        <h4 scope="col" class="col-4 align-middle">Title</h4>
+              <td
+                scope="row"
+                class="col-4 d-flex flex-column justify-content-center"
+              >
+                {{ containsHTML(client.name) }}
+              </td>
+              <td class="col-4 d-flex flex-column justify-content-center">
+                {{ client.title }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table width="100%">
-        <tbody class="list-group">
-          <tr
-            v-for="client in filteredClients"
+      <!-- tablet -->
+      <div class="d-md-none d-sm-block">
+        <div
+          v-for="client in filteredClients"
+          class="clients-list d-flex flex-column px-5"
+          :key="client.name"
+        >
+          <div
+            class="card client-card"
             @click="
               getChosenClient(client);
               openPopUp();
             "
-            class="list-group-item list-group-item-action d-flex w-100 justify-content-between"
-            :key="client.name"
           >
-            <td class="col-4 d-flex flex-column justify-content-center">
-              <img :src="client.avatar" class="avatar-list ms-3" alt="avatar" />
-            </td>
-
-            <td
-              scope="row"
-              class="col-4 d-flex flex-column justify-content-center"
-            >
-              {{ containsHTML(client.name) }}
-            </td>
-            <td class="col-4 d-flex flex-column justify-content-center">
+            <img :src="client.avatar" class="avatar-list" alt="" />
+            <div>{{ containsHTML(client.name) }}</div>
+            <div>
               {{ client.title }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- tablet -->
-    <div class="d-md-none d-sm-block">
-      <div
-        v-for="client in filteredClients"
-        class="clients-list d-flex flex-column px-5"
-        :key="client.name"
-      >
-        <div
-          class="card client-card"
-          @click="
-            getChosenClient(client);
-            openPopUp();
-          "
-        >
-          <img :src="client.avatar" class="avatar-list" alt="" />
-          <div>{{ containsHTML(client.name) }}</div>
-          <div>
-            {{ client.title }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 </template>
 
