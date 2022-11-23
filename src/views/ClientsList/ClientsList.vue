@@ -1,30 +1,7 @@
 <template>
   <main class="hello">
     <section id="search-section" class="container">
-      <div class="d-flex justify-content-center py-5">
-        <div class="col-lg-6 col-md-7">
-          <h2>Context Labs</h2>
-          <p>Clients has been added last month</p>
-          <div class="wrapper">
-            <img
-              class="search-icon"
-              src="../../assets/images/search-outline.svg"
-            />
-            <input
-              class="search"
-              type="search"
-              placeholder="Search Clients ..."
-              v-model="search"
-            />
-            <a href="#">
-              <img
-                class="voice"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Google_mic.svg/716px-Google_mic.svg.png"
-                title="Search by Voice"
-            /></a>
-          </div>
-        </div>
-      </div>
+      <SearchBar @handle-change="handleChange" />
     </section>
     <PopUp
       :client-data="clientData"
@@ -96,12 +73,14 @@
 <script>
 import { mapState, mapActions } from "pinia";
 import { useClientStore } from "@/stores/ClientStore";
+import SearchBar from "@/components/SearchBar/SearchBar.vue";
 import PopUp from "@/components/Popup/PopUp.vue";
 
 export default {
   name: "ClientsList",
   components: {
     PopUp,
+    SearchBar,
   },
   data() {
     return {
@@ -128,6 +107,10 @@ export default {
   },
   methods: {
     ...mapActions(useClientStore, ["getClientsList"]),
+
+    handleChange(searchText) {
+      this.search = searchText;
+    },
 
     openPopUp() {
       this.popUpTrigger = !this.popUpTrigger;
