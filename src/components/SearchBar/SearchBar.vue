@@ -1,8 +1,7 @@
 <template>
   <div class="d-flex justify-content-center py-5">
     <div class="col-lg-6 col-md-7">
-      <h2>Context Labs</h2>
-      <p>Clients has been added last month</p>
+      <p>Clients has been added ... You can search here</p>
       <div class="wrapper">
         <img class="search-icon" src="../../assets/images/search-outline.svg" />
         <input
