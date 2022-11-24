@@ -9,7 +9,7 @@
 
 ## Project setup
 
-```consol
+```npm
 npm install
 ```
 
