@@ -1,6 +1,6 @@
 <template>
-  <div class="popup">
-    <div class="card" style="width: 18rem">
+  <div class="popup" @click="closePopUp">
+    <div class="card" style="width: 300px">
       <div class="pt-3 pb-2">
         <img :src="clientData.avatar" class="card-img-top avatar ml-1" alt="" />
       </div>
