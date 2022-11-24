@@ -25,15 +25,17 @@ describe("The App:", () => {
   });
 
   test("Should Load component", () => {
+    //THEN
     expect(wrapper.exists).toBeTruthy();
   });
 
   test("Test handleChange method", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "handleChange");
     wrapper.vm.searchText = "text";
-
+    //WHEN
     wrapper.vm.handleChange();
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(wrapper.vm.searchText).toBe("text");
   });

@@ -35,14 +35,16 @@ describe("The App:", () => {
   });
 
   test("Should Load component", () => {
+    //THEN
     expect(wrapper.exists).toBeTruthy();
   });
 
   test("Test checkClientValues method with name as parameter", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "checkClientValues");
-
+    //WHEN
     const name = wrapper.vm.checkClientValues("name");
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(wrapper.vm.clientData).toEqual({
       avatar:
@@ -56,10 +58,11 @@ describe("The App:", () => {
   });
 
   test("Test checkClientValues method with title as parameter", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "checkClientValues");
-
+    //WHEN
     const title = wrapper.vm.checkClientValues("title");
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(wrapper.vm.clientData).toEqual({
       avatar:
@@ -73,10 +76,11 @@ describe("The App:", () => {
   });
 
   test("Test checkClientValues method with nationality as parameter", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "checkClientValues");
-
+    //WHEN
     const nationality = wrapper.vm.checkClientValues("nationality");
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(wrapper.vm.clientData).toEqual({
       avatar:
@@ -90,10 +94,11 @@ describe("The App:", () => {
   });
 
   test("Test checkClientValues method with quote as parameter", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "checkClientValues");
-
+    //WHEN
     const quote = wrapper.vm.checkClientValues("quote");
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(wrapper.vm.clientData).toEqual({
       avatar:
@@ -107,20 +112,22 @@ describe("The App:", () => {
   });
 
   test("Test containsHTML method", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "containsHTML");
     const str = "Omar <h1>TM</h1>";
-
+    //WHEN
     const newStr = wrapper.vm.containsHTML(str);
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(newStr).toBe("Omar ");
   });
 
   test("Test closePopUp method", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "closePopUp");
-
+    //WHEN
     wrapper.vm.closePopUp();
-
+    //THEN
     expect(spy).toHaveBeenCalled();
   });
 });

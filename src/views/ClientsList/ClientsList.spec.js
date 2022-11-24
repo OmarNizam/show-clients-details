@@ -58,44 +58,49 @@ describe("ClientsList view:", () => {
   });
 
   test("Test getClientsList pinia store action form component on mounted property", async () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "getClientsList");
-
+    //WHEN
     await wrapper.vm.getClientsList();
-
+    //THEN
     expect(spy).toHaveBeenCalled();
   });
 
   test("Test handleChange method", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "handleChange");
     const searchText = "omar";
-
+    //WHEN
     wrapper.vm.handleChange(searchText);
-
+    //THEN
     expect(spy).toHaveBeenCalledWith("omar");
     expect(wrapper.vm.search).toBe("omar");
   });
 
   test("Test openPopUp method", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "openPopUp");
     wrapper.vm.popUpTrigger = false;
-
+    //WHEN
     wrapper.vm.openPopUp();
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(wrapper.vm.popUpTrigger).toBeTruthy();
   });
 
   test("Test closePopUp method", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "closePopUp");
     const newPopUpTrigger = false;
-
+    //WHEN
     wrapper.vm.closePopUp(newPopUpTrigger);
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(wrapper.vm.popUpTrigger).toBeFalsy();
   });
 
   test("Test getChosenClient method", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "getChosenClient");
     const chosenClient = {
       avatar:
@@ -105,9 +110,9 @@ describe("ClientsList view:", () => {
       quote: "I am a super-visor!",
       title: "Supervisor",
     };
-
+    //WHEN
     wrapper.vm.getChosenClient(chosenClient);
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(wrapper.vm.clientData).toEqual({
       avatar:
@@ -120,11 +125,12 @@ describe("ClientsList view:", () => {
   });
 
   test("Test containsHTML method", () => {
+    //GIVEN
     const spy = jest.spyOn(wrapper.vm, "containsHTML");
     const str = "Omar <h1>TM</h1>";
-
+    //WHEN
     const newStr = wrapper.vm.containsHTML(str);
-
+    //THEN
     expect(spy).toHaveBeenCalled();
     expect(newStr).toBe("Omar ");
   });
