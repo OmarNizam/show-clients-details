@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-center py-5">
-    <div class="col-lg-5 col-md-7 pt-3">
+    <div class="col-lg-5 col-md-7 pt-3 mx-5">
       <h3 class="text-white">ContextLabs</h3>
       <p class="text-white">1205 + Clients has been added last month</p>
       <div class="wrapper">

@@ -51,19 +51,23 @@
       <div class="d-md-none d-sm-block">
         <div
           v-for="client in filteredClients"
-          class="clients-list d-flex flex-column px-5"
+          class="d-flex flex-column px-5 pb-4"
           :key="client.name"
         >
           <div
             class="card client-card"
+            style="height: 170px"
             @click="
               getChosenClient(client);
               openPopUp();
             "
           >
-            <img :src="client.avatar" class="avatar-list" alt="" />
-            <div>{{ containsHTML(client.name) }}</div>
-            <div>
+            <img :src="client.avatar" class="avatar-list mt-2" alt="avatar" />
+            <div class="pt-3">
+              <strong>Name: </strong>{{ containsHTML(client.name) }}
+            </div>
+            <div class="pt-3">
+              <strong>Job Title: </strong>
               {{ client.title }}
             </div>
           </div>
