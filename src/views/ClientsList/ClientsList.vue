@@ -15,9 +15,9 @@
       <!-- Desktop -->
       <div id="clients-desktop" class="container d-none d-md-block mt-3">
         <div class="d-flex w-100 justify-content-between px-4">
-          <h4 scope="col" class="col-4 align-middle">Avatar</h4>
-          <h4 scope="col" class="col-4 align-middle">Name</h4>
-          <h4 scope="col" class="col-4 align-middle">Title</h4>
+          <h4 scope="col" class="col-4 align-middle text-white">Avatar</h4>
+          <h4 scope="col" class="col-4 align-middle text-white">Name</h4>
+          <h4 scope="col" class="col-4 align-middle text-white">Title</h4>
         </div>
         <table width="100%">
           <tbody class="list-group">
@@ -31,11 +31,7 @@
               :key="client.name"
             >
               <td class="col-4 d-flex flex-column justify-content-center">
-                <img
-                  :src="client.avatar"
-                  class="avatar-list ms-3"
-                  alt="avatar"
-                />
+                <img :src="client.avatar" class="avatar-list" alt="avatar" />
               </td>
 
               <td

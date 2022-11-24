@@ -1,7 +1,8 @@
 <template>
   <div class="d-flex justify-content-center py-5">
-    <div class="col-lg-6 col-md-7">
-      <p>Clients has been added ... You can search here</p>
+    <div class="col-lg-5 col-md-7 pt-3">
+      <h3 class="text-white">ContextLabs</h3>
+      <p class="text-white">1205 + Clients has been added last month</p>
       <div class="wrapper">
         <img class="search-icon" src="../../assets/images/search-outline.svg" />
         <input
@@ -11,13 +12,6 @@
           v-model="searchText"
           @input="handleChange"
         />
-        <a href="#">
-          <img
-            class="voice"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Google_mic.svg/716px-Google_mic.svg.png"
-            title="Search by Voice"
-          />
-        </a>
       </div>
     </div>
   </div>
